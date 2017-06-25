@@ -33,7 +33,7 @@ public class InterfacePrincipal extends javax.swing.JFrame {
         bRealizarVenda = new javax.swing.JButton();
         bRelatorios = new javax.swing.JButton();
         lPanificadora = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu = new javax.swing.JMenuBar();
         jMenuCadastrar = new javax.swing.JMenu();
         jMenuCadastrarPao = new javax.swing.JMenuItem();
         jMenuConsultar = new javax.swing.JMenu();
@@ -75,7 +75,7 @@ public class InterfacePrincipal extends javax.swing.JFrame {
         });
         jMenuCadastrar.add(jMenuCadastrarPao);
 
-        jMenuBar1.add(jMenuCadastrar);
+        jMenu.add(jMenuCadastrar);
 
         jMenuConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/lupa.png"))); // NOI18N
         jMenuConsultar.setText("Consultar");
@@ -88,7 +88,7 @@ public class InterfacePrincipal extends javax.swing.JFrame {
         });
         jMenuConsultar.add(jMenuConsultarPaes);
 
-        jMenuBar1.add(jMenuConsultar);
+        jMenu.add(jMenuConsultar);
 
         jMenuOpcao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/config.png"))); // NOI18N
         jMenuOpcao.setText("Opções");
@@ -101,9 +101,9 @@ public class InterfacePrincipal extends javax.swing.JFrame {
         });
         jMenuOpcao.add(jMenuOpcoesSair);
 
-        jMenuBar1.add(jMenuOpcao);
+        jMenu.add(jMenuOpcao);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(jMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -212,7 +212,7 @@ public class InterfacePrincipal extends javax.swing.JFrame {
     private javax.swing.JButton bRealizarVenda;
     private javax.swing.JButton bRelatorios;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenu;
     private javax.swing.JMenu jMenuCadastrar;
     private javax.swing.JMenuItem jMenuCadastrarPao;
     private javax.swing.JMenu jMenuConsultar;

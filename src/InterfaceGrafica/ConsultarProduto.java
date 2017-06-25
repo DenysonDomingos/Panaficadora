@@ -5,11 +5,13 @@
  */
 package InterfaceGrafica;
 
+import java.awt.event.ActionEvent;
+
 /**
  *
  * @author Douglas
  */
-public class ConsultarProduto extends javax.swing.JFrame {
+public class ConsultarProduto extends FormTemplate {
 
     /**
      * Creates new form ConsultarProduto
@@ -28,10 +30,6 @@ public class ConsultarProduto extends javax.swing.JFrame {
     private void initComponents() {
 
         lProdutos = new javax.swing.JLabel();
-        bAlterar = new javax.swing.JButton();
-        bExcluir = new javax.swing.JButton();
-        bSalvar = new javax.swing.JButton();
-        bSair = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaProdutos = new javax.swing.JTable();
 
@@ -39,19 +37,6 @@ public class ConsultarProduto extends javax.swing.JFrame {
 
         lProdutos.setFont(new java.awt.Font("Tahoma", 0, 40)); // NOI18N
         lProdutos.setText("Produtos");
-
-        bAlterar.setText("Alterar");
-
-        bExcluir.setText("Excluir");
-
-        bSalvar.setText("Salvar");
-
-        bSair.setText("Sair");
-        bSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bSairActionPerformed(evt);
-            }
-        });
 
         tabelaProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -72,25 +57,13 @@ public class ConsultarProduto extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(bAlterar)
-                        .addGap(29, 29, 29)
-                        .addComponent(bExcluir)
-                        .addGap(34, 34, 34)
-                        .addComponent(bSalvar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                        .addComponent(bSair)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addGap(35, 35, 35))
             .addGroup(layout.createSequentialGroup()
                 .addGap(133, 133, 133)
                 .addComponent(lProdutos)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {bAlterar, bExcluir, bSair, bSalvar});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -98,24 +71,11 @@ public class ConsultarProduto extends javax.swing.JFrame {
                 .addComponent(lProdutos)
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bAlterar)
-                    .addComponent(bExcluir)
-                    .addComponent(bSalvar)
-                    .addComponent(bSair))
-                .addGap(48, 48, 48))
+                .addContainerGap(214, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void bSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSairActionPerformed
-        InterfacePrincipal interfacePrincipal = new InterfacePrincipal();
-        interfacePrincipal.setLocationRelativeTo(null);
-        interfacePrincipal.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_bSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,12 +113,25 @@ public class ConsultarProduto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bAlterar;
-    private javax.swing.JButton bExcluir;
-    private javax.swing.JButton bSair;
-    private javax.swing.JButton bSalvar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lProdutos;
     private javax.swing.JTable tabelaProdutos;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void bApagarActionPerformed(ActionEvent fonte) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void bsalvarActionPerformed(ActionEvent fonte) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void bSairActionPerformed(ActionEvent fonte) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+ 
 }

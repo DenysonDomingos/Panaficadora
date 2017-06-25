@@ -31,7 +31,6 @@ public class CadastroPao extends javax.swing.JFrame {
         lPreco = new javax.swing.JLabel();
         tPreco = new javax.swing.JTextField();
         lCadastroProduto = new javax.swing.JLabel();
-        bAlterar = new javax.swing.JButton();
         bSalvar = new javax.swing.JButton();
         bCancelar = new javax.swing.JButton();
         bSair = new javax.swing.JButton();
@@ -52,8 +51,6 @@ public class CadastroPao extends javax.swing.JFrame {
 
         lCadastroProduto.setFont(new java.awt.Font("Tahoma", 0, 40)); // NOI18N
         lCadastroProduto.setText("Cadastro Produto");
-
-        bAlterar.setText("Alterar");
 
         bSalvar.setText("Salvar");
 
@@ -92,35 +89,36 @@ public class CadastroPao extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addComponent(lPreco)
+                                .addGap(18, 18, 18)
+                                .addComponent(tPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(lStatus))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGap(32, 32, 32)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lPreco)
-                                    .addComponent(lDescricao)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(bAlterar)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(tPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(lStatus)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jrAtivo)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jrInativo))
-                                .addComponent(tDescricao))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(bSalvar)
-                                .addGap(26, 26, 26)
-                                .addComponent(bCancelar)
-                                .addGap(30, 30, 30)
-                                .addComponent(bSair)))))
-                .addContainerGap(17, Short.MAX_VALUE))
+                                .addGap(50, 50, 50)
+                                .addComponent(bCancelar)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(jrAtivo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jrInativo))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bSair)
+                                .addGap(14, 14, 14))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(lDescricao)
+                        .addGap(18, 18, 18)
+                        .addComponent(tDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {bAlterar, bCancelar, bSair, bSalvar});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {bCancelar, bSair, bSalvar});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,7 +138,6 @@ public class CadastroPao extends javax.swing.JFrame {
                     .addComponent(jrInativo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bAlterar)
                     .addComponent(bSalvar)
                     .addComponent(bCancelar)
                     .addComponent(bSair))
@@ -202,7 +199,6 @@ public class CadastroPao extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bAlterar;
     private javax.swing.JButton bCancelar;
     private javax.swing.JButton bSair;
     private javax.swing.JButton bSalvar;

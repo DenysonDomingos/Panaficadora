@@ -5,18 +5,29 @@
  */
 package InterfaceGrafica;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+
 /**
  *
  * @author Douglas
  */
-public class FormTemplate extends javax.swing.JPanel {
+public abstract class FormTemplate extends javax.swing.JFrame implements ActionListener{
 
     /**
      * Creates new form FormTemplate
      */
     public FormTemplate() {
         initComponents();
+        bApagar.addActionListener(this);
+        bSalvar.addActionListener(this);
+        bSair.addActionListener(this);
     }
+    
+    public abstract void bApagarActionPerformed(ActionEvent fonte);
+    public abstract void bsalvarActionPerformed(ActionEvent fonte);
+    public abstract void bSairActionPerformed(ActionEvent fonte);
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,19 +38,68 @@ public class FormTemplate extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        jpSul = new javax.swing.JPanel();
+        bApagar = new javax.swing.JButton();
+        bSalvar = new javax.swing.JButton();
+        bSair = new javax.swing.JButton();
+
+        bApagar.setText("Apagar");
+
+        bSalvar.setText("Salvar");
+
+        bSair.setText("Sair");
+
+        javax.swing.GroupLayout jpSulLayout = new javax.swing.GroupLayout(jpSul);
+        jpSul.setLayout(jpSulLayout);
+        jpSulLayout.setHorizontalGroup(
+            jpSulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpSulLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(bApagar)
+                .addGap(47, 47, 47)
+                .addComponent(bSalvar)
+                .addGap(41, 41, 41)
+                .addComponent(bSair)
+                .addContainerGap(43, Short.MAX_VALUE))
+        );
+
+        jpSulLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {bApagar, bSair, bSalvar});
+
+        jpSulLayout.setVerticalGroup(
+            jpSulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpSulLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jpSulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bApagar)
+                    .addComponent(bSalvar)
+                    .addComponent(bSair))
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jpSul, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 305, Short.MAX_VALUE)
+                .addComponent(jpSul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bApagar;
+    private javax.swing.JButton bSair;
+    private javax.swing.JButton bSalvar;
+    private javax.swing.JPanel jpSul;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

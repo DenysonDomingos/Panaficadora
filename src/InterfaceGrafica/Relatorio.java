@@ -1,5 +1,7 @@
 package InterfaceGrafica;
 
+import java.awt.event.ActionEvent;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,7 +13,7 @@ package InterfaceGrafica;
  *
  * @author Douglas
  */
-public class Relatorio extends javax.swing.JFrame {
+public class Relatorio extends FormTemplate {
 
     /**
      * Creates new form Relatorio
@@ -32,11 +34,6 @@ public class Relatorio extends javax.swing.JFrame {
         lRelatorio = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaRelatorio = new javax.swing.JTable();
-        bApagar = new javax.swing.JButton();
-        bAlterar = new javax.swing.JButton();
-        bSalvar = new javax.swing.JButton();
-        bCancelar = new javax.swing.JButton();
-        bSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,49 +53,19 @@ public class Relatorio extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabelaRelatorio);
 
-        bApagar.setText("Apagar");
-
-        bAlterar.setText("Alterar");
-
-        bSalvar.setText("Salvar");
-
-        bCancelar.setText("Cancelar");
-
-        bSair.setText("Sair");
-        bSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bSairActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 103, Short.MAX_VALUE)
                 .addComponent(lRelatorio)
-                .addGap(139, 139, 139))
+                .addGap(118, 118, 118))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(bAlterar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(bApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(bSalvar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(bCancelar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(bSair)
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {bAlterar, bApagar, bCancelar, bSair, bSalvar});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -106,25 +73,11 @@ public class Relatorio extends javax.swing.JFrame {
                 .addComponent(lRelatorio)
                 .addGap(29, 29, 29)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bAlterar)
-                    .addComponent(bSalvar)
-                    .addComponent(bCancelar)
-                    .addComponent(bSair)
-                    .addComponent(bApagar))
-                .addGap(51, 51, 51))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void bSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSairActionPerformed
-        InterfacePrincipal interfacePrincipal = new InterfacePrincipal();
-        interfacePrincipal.setLocationRelativeTo(null);
-        interfacePrincipal.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_bSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,13 +115,25 @@ public class Relatorio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bAlterar;
-    private javax.swing.JButton bApagar;
-    private javax.swing.JButton bCancelar;
-    private javax.swing.JButton bSair;
-    private javax.swing.JButton bSalvar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lRelatorio;
     private javax.swing.JTable tabelaRelatorio;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void bApagarActionPerformed(ActionEvent fonte) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void bsalvarActionPerformed(ActionEvent fonte) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void bSairActionPerformed(ActionEvent fonte) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
 }
