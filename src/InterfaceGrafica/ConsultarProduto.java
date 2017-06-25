@@ -84,7 +84,7 @@ public class ConsultarProduto extends javax.swing.JFrame {
                         .addComponent(bSair)))
                 .addGap(35, 35, 35))
             .addGroup(layout.createSequentialGroup()
-                .addGap(122, 122, 122)
+                .addGap(133, 133, 133)
                 .addComponent(lProdutos)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );

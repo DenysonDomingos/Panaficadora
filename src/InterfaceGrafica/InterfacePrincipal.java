@@ -64,6 +64,7 @@ public class InterfacePrincipal extends javax.swing.JFrame {
         lPanificadora.setFont(new java.awt.Font("Tahoma", 0, 40)); // NOI18N
         lPanificadora.setText("Panificadora");
 
+        jMenuCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/add.png"))); // NOI18N
         jMenuCadastrar.setText("Cadastrar");
 
         jMenuCadastrarPao.setText("Pão");
@@ -76,6 +77,7 @@ public class InterfacePrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuCadastrar);
 
+        jMenuConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/lupa.png"))); // NOI18N
         jMenuConsultar.setText("Consultar");
 
         jMenuConsultarPaes.setText("Pães");
@@ -88,6 +90,7 @@ public class InterfacePrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuConsultar);
 
+        jMenuOpcao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/config.png"))); // NOI18N
         jMenuOpcao.setText("Opções");
 
         jMenuOpcoesSair.setText("Sair");
