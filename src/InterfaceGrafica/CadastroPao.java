@@ -5,6 +5,9 @@
  */
 package InterfaceGrafica;
 
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Douglas
@@ -47,12 +50,15 @@ public class CadastroPao extends javax.swing.JFrame {
         lPreco.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
         lPreco.setText("Preço");
 
-        tPreco.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
-
         lCadastroProduto.setFont(new java.awt.Font("Tahoma", 0, 40)); // NOI18N
         lCadastroProduto.setText("Cadastro Produto");
 
         bSalvar.setText("Salvar");
+        bSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSalvarActionPerformed(evt);
+            }
+        });
 
         bCancelar.setText("Cancelar");
         bCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -163,6 +169,22 @@ public class CadastroPao extends javax.swing.JFrame {
         jrInativo.setSelected(false);
     }//GEN-LAST:event_bCancelarActionPerformed
 
+    private void bSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarActionPerformed
+        try {
+            CadastroPao pao = new CadastroPao();
+            pao.setPreco(Integer.parseInt(tPreco.getText()));
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "O Preço não deve conter Caracteres!\n",
+                    "Erro de entrada", JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this,
+                    "Erro ao Inserir no Banco de Dados\n"
+                    + e.getLocalizedMessage(),
+                    "Mensagem de erro",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_bSalvarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -211,4 +233,12 @@ public class CadastroPao extends javax.swing.JFrame {
     private javax.swing.JTextField tDescricao;
     private javax.swing.JTextField tPreco;
     // End of variables declaration//GEN-END:variables
+
+    private void setPreco(int parseInt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void setDescricao(String text) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

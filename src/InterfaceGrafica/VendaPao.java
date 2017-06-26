@@ -1,5 +1,6 @@
 package InterfaceGrafica;
 
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /*
@@ -56,8 +57,7 @@ public class VendaPao extends javax.swing.JFrame {
         lVenda.setFont(new java.awt.Font("Tahoma", 0, 40)); // NOI18N
         lVenda.setText("Venda");
 
-        tsQuantidade.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
-        tsQuantidade.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        tsQuantidade.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         tabelaVenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -73,8 +73,18 @@ public class VendaPao extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tabelaVenda);
 
         bApagar.setText("Apagar");
+        bApagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bApagarActionPerformed(evt);
+            }
+        });
 
         bSalvar.setText("Salvar");
+        bSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSalvarActionPerformed(evt);
+            }
+        });
 
         bSair.setText("Sair");
         bSair.addActionListener(new java.awt.event.ActionListener() {
@@ -91,6 +101,11 @@ public class VendaPao extends javax.swing.JFrame {
         });
 
         bAdicionar.setText("Adicionar");
+        bAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAdicionarActionPerformed(evt);
+            }
+        });
 
         jcbProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -102,32 +117,37 @@ public class VendaPao extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lPao)
-                                .addGap(13, 13, 13)
-                                .addComponent(jcbProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(bAdicionar))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(lQuantidade)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(tsQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(bApagar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(bSalvar)
+                                .addGap(39, 39, 39)
+                                .addComponent(bCancelar)
+                                .addGap(33, 33, 33)
+                                .addComponent(bSair))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(lPao)
+                                            .addGap(13, 13, 13)
+                                            .addComponent(jcbProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(bAdicionar))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(lQuantidade)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(tsQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(237, 237, 237)))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(bApagar)
-                                        .addGap(33, 33, 33)
-                                        .addComponent(bSalvar)
-                                        .addGap(27, 27, 27)
-                                        .addComponent(bCancelar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(bSair))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addGap(7, 7, 7)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 8, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(170, 170, 170)
                         .addComponent(lVenda)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {bApagar, bCancelar, bSair, bSalvar});
@@ -171,6 +191,48 @@ public class VendaPao extends javax.swing.JFrame {
         jcbProduto.setSelectedItem(null);
         tsQuantidade.setValue(0);
     }//GEN-LAST:event_bCancelarActionPerformed
+
+    private void bSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarActionPerformed
+        try {
+            
+        } catch (Exception e) {
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this,
+                    "Erro ao Inserir no Banco de Dados\n"
+                    + e.getLocalizedMessage(),
+                    "Mensagem de erro",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_bSalvarActionPerformed
+
+    private void bApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bApagarActionPerformed
+        try {
+            
+        } catch (Exception e) {
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this,
+                    "Erro ao Deletar do Banco de Dados\n"
+                    + e.getLocalizedMessage(),
+                    "Mensagem de erro",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_bApagarActionPerformed
+
+    private void bAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAdicionarActionPerformed
+        try {
+            
+        } catch (Exception e) {
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this,
+                    "Erro ao Adicionar Venda no Banco de Dados\n"
+                    + e.getLocalizedMessage(),
+                    "Mensagem de erro",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_bAdicionarActionPerformed
 
     /**
      * @param args the command line arguments

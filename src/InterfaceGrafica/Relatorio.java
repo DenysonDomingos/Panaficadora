@@ -1,6 +1,8 @@
 package InterfaceGrafica;
 
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -122,17 +124,40 @@ public class Relatorio extends FormTemplate {
 
     @Override
     public void bApagarActionPerformed(ActionEvent fonte) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            
+        } catch (Exception e) {
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this,
+                    "Erro ao Apagar do Banco de Dados\n"
+                    + e.getLocalizedMessage(),
+                    "Mensagem de erro",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     @Override
     public void bsalvarActionPerformed(ActionEvent fonte) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            
+        } catch (Exception e) {
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this,
+                    "Erro ao Inserir no Banco de Dados\n"
+                    + e.getLocalizedMessage(),
+                    "Mensagem de erro",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     @Override
     public void bSairActionPerformed(ActionEvent fonte) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        InterfacePrincipal interfacePrincipal = new InterfacePrincipal();
+        interfacePrincipal.setLocationRelativeTo(null);
+        interfacePrincipal.setVisible(true);
+        this.dispose();
     }
 
     
