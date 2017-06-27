@@ -1,6 +1,8 @@
 package InterfaceGrafica;
 
 import javax.swing.JOptionPane;
+import model.bean.Produto;
+import model.dao.ProdutoDAO;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -20,6 +22,13 @@ public class VendaPao extends javax.swing.JFrame {
      */
     public VendaPao() {
         initComponents();
+        
+        ProdutoDAO dao = new ProdutoDAO();
+        
+        for (Produto p: dao.read()){
+            cbProdutos.addItem(p);
+        }
+                
     }
 
     /**
@@ -43,7 +52,7 @@ public class VendaPao extends javax.swing.JFrame {
         bSair = new javax.swing.JButton();
         bCancelar = new javax.swing.JButton();
         bAdicionar = new javax.swing.JButton();
-        jcbProduto = new javax.swing.JComboBox<>();
+        cbProdutos = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,8 +100,11 @@ public class VendaPao extends javax.swing.JFrame {
         });
 
         bAdicionar.setText("Adicionar");
-
-        jcbProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        bAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAdicionarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,7 +118,7 @@ public class VendaPao extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lPao)
                                 .addGap(13, 13, 13)
-                                .addComponent(jcbProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cbProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(bAdicionar))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,7 +153,7 @@ public class VendaPao extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lPao)
                     .addComponent(bAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jcbProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lQuantidade)
@@ -168,9 +180,13 @@ public class VendaPao extends javax.swing.JFrame {
     }//GEN-LAST:event_bSairActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
-        jcbProduto.setSelectedItem(null);
+        cbProdutos.setSelectedItem(null);
         tsQuantidade.setValue(0);
     }//GEN-LAST:event_bCancelarActionPerformed
+
+    private void bAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAdicionarActionPerformed
+        Produto produto = (Produto) cbProdutos.getSelectedItem();
+    }//GEN-LAST:event_bAdicionarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,9 +229,9 @@ public class VendaPao extends javax.swing.JFrame {
     private javax.swing.JButton bCancelar;
     private javax.swing.JButton bSair;
     private javax.swing.JButton bSalvar;
+    private javax.swing.JComboBox<Object> cbProdutos;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JComboBox<String> jcbProduto;
     private javax.swing.JLabel lPao;
     private javax.swing.JLabel lQuantidade;
     private javax.swing.JLabel lVenda;

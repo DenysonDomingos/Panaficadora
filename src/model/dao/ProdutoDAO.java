@@ -63,7 +63,7 @@ public class ProdutoDAO {
                 produto.setNome(rs.getString("Nome"));
                 produto.setPreco(rs.getDouble("Preco"));
                 
-                produtos.add(produto);
+                produtos.add(produto);                
                 
             }
             
@@ -74,6 +74,48 @@ public class ProdutoDAO {
         }
         
         return produtos;
+    }
+    
+    public void update(Produto p){
+        
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stnt = null;
+        
+        try {
+            stnt = con.prepareStatement("UPDATE Produto SET Nome = ?, Preco = ? WHERE IDProduto =? ");
+            stnt.setString(1, p.getNome());
+            stnt.setDouble(2, p.getPreco());
+            stnt.setInt(3, p.getId());
+            
+            stnt.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Atualizado com sucesso!");
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stnt);
+        }
+    }
+    
+    public void delete(Produto p){
+        
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stnt = null;
+        
+        try {
+            stnt = con.prepareStatement("DELETE FROM Produto WHERE IDProduto =? ");            
+            stnt.setInt(1, p.getId());
+            
+            stnt.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Excluido com sucesso!");
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao excluir: " + ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stnt);
+        }
     }
     
 }

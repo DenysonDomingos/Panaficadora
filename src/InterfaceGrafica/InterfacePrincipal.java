@@ -44,6 +44,7 @@ public class InterfacePrincipal extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         bRealizarVenda.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         bRealizarVenda.setText("Realizar Venda");
@@ -138,6 +139,7 @@ public class InterfacePrincipal extends javax.swing.JFrame {
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {bRealizarVenda, bRelatorios});
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void bRealizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRealizarVendaActionPerformed
@@ -155,9 +157,10 @@ public class InterfacePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_bRelatoriosActionPerformed
 
     private void jMenuCadastrarPaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCadastrarPaoActionPerformed
-        CadastroPao cadastroPao = new CadastroPao();
-        cadastroPao.setLocationRelativeTo(null);
-        cadastroPao.setVisible(true);
+        
+        CadastroProduto cadastroProduto = new CadastroProduto();
+        cadastroProduto.setLocationRelativeTo(null);
+        cadastroProduto.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuCadastrarPaoActionPerformed
 
