@@ -5,6 +5,9 @@
  */
 package InterfaceGrafica;
 
+import model.bean.Produto;
+import model.dao.ProdutoDAO;
+
 /**
  *
  * @author Douglas
@@ -53,6 +56,11 @@ public class CadastroPao extends javax.swing.JFrame {
         lCadastroProduto.setText("Cadastro Produto");
 
         bSalvar.setText("Salvar");
+        bSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSalvarActionPerformed(evt);
+            }
+        });
 
         bCancelar.setText("Cancelar");
         bCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -162,6 +170,16 @@ public class CadastroPao extends javax.swing.JFrame {
         jrAtivo.setSelected(false);
         jrInativo.setSelected(false);
     }//GEN-LAST:event_bCancelarActionPerformed
+
+    private void bSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarActionPerformed
+        Produto p = new Produto();
+        ProdutoDAO dao = new ProdutoDAO();
+        
+        p.setNome(tDescricao.getText());
+        p.setPreco(Double.parseDouble(tPreco.getText()));
+        
+        dao.create(p);
+    }//GEN-LAST:event_bSalvarActionPerformed
 
     /**
      * @param args the command line arguments
