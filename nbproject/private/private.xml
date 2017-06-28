@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Douglas/Documents/NetBeansProjects/Panaficadora/src/InterfaceGrafica/ConsultarProduto.java</file>
-            <file>file:/C:/Users/Douglas/Documents/NetBeansProjects/Panaficadora/src/InterfaceGrafica/Relatorio.java</file>
+            <file>file:/Users/deny_domin/NetBeansProjects/Panaficadora/src/InterfaceGrafica/CadastroProduto.java</file>
+            <file>file:/Users/deny_domin/NetBeansProjects/Panaficadora/src/model/bean/Produto.java</file>
+            <file>file:/Users/deny_domin/NetBeansProjects/Panaficadora/src/model/bean/Cliente.java</file>
+            <file>file:/Users/deny_domin/NetBeansProjects/Panaficadora/src/InterfaceGrafica/InterfacePrincipal.java</file>
         </group>
     </open-files>
 </project-private>
