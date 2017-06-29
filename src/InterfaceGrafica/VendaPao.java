@@ -53,7 +53,7 @@ public class VendaPao extends javax.swing.JFrame {
         int rowsCount = jTPedidos.getRowCount();
         double sum = 0;
         for (int i = 0; i < rowsCount; i++) {
-            sum = sum + Double.parseDouble(jTPedidos.getValueAt(i, 2).toString());
+            sum = sum + Double.parseDouble(jTPedidos.getValueAt(i, 3).toString());
         }
         return sum;
     }

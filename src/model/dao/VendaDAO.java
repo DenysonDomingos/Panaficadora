@@ -41,7 +41,7 @@ public class VendaDAO {
             if (rs.next() && rs != null) {
                 idVenda = rs.getInt(1);
             } else {
-                System.out.println("No, Nop nada");
+                JOptionPane.showMessageDialog(null, "Erro ao retorna id de venda para pedido: ");
             }           
 
             JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
