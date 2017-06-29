@@ -36,6 +36,7 @@ public class InterfacePrincipal extends javax.swing.JFrame {
         jMenu = new javax.swing.JMenuBar();
         jMenuCadastrar = new javax.swing.JMenu();
         jMenuCadastrarPao = new javax.swing.JMenuItem();
+        jMenuCadastroCliente = new javax.swing.JMenuItem();
         jMenuConsultar = new javax.swing.JMenu();
         jMenuConsultarPaes = new javax.swing.JMenuItem();
         jMenuOpcao = new javax.swing.JMenu();
@@ -75,6 +76,14 @@ public class InterfacePrincipal extends javax.swing.JFrame {
             }
         });
         jMenuCadastrar.add(jMenuCadastrarPao);
+
+        jMenuCadastroCliente.setText("Cliente");
+        jMenuCadastroCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuCadastroClienteActionPerformed(evt);
+            }
+        });
+        jMenuCadastrar.add(jMenuCadastroCliente);
 
         jMenu.add(jMenuCadastrar);
 
@@ -176,6 +185,13 @@ public class InterfacePrincipal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jMenuOpcoesSairActionPerformed
 
+    private void jMenuCadastroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCadastroClienteActionPerformed
+        CadastroCliente cadastroCliente = new CadastroCliente();
+        cadastroCliente.setLocationRelativeTo(null);
+        cadastroCliente.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuCadastroClienteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bRealizarVenda;
@@ -184,6 +200,7 @@ public class InterfacePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenu;
     private javax.swing.JMenu jMenuCadastrar;
     private javax.swing.JMenuItem jMenuCadastrarPao;
+    private javax.swing.JMenuItem jMenuCadastroCliente;
     private javax.swing.JMenu jMenuConsultar;
     private javax.swing.JMenuItem jMenuConsultarPaes;
     private javax.swing.JMenu jMenuOpcao;
