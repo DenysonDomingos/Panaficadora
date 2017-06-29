@@ -16,21 +16,30 @@ import model.dao.ProdutoDAO;
  */
 public class CadastroProduto extends javax.swing.JFrame {
 
+    private String oldNome;
+    private String oldPreco;
+
     /**
      * Creates new form CadastroProduto
      */
     public CadastroProduto() {
         initComponents();
+        inicio();
+    }
+
+    public void inicio() {
+        btnExcluir.setEnabled(false);
+        btnAtualizar.setEnabled(false);
+        btnCadastrar.setEnabled(true);
         readJTable();
     }
 
-    
-    public void readJTable(){
+    public void readJTable() {
         DefaultTableModel modelo = (DefaultTableModel) jTProdutos.getModel();
         modelo.setNumRows(0);
         ProdutoDAO pdao = new ProdutoDAO();
-        
-        for (Produto p: pdao.read()){
+
+        for (Produto p : pdao.read()) {
             modelo.addRow(new Object[]{
                 p.getId(),
                 p.getNome(),
@@ -38,13 +47,37 @@ public class CadastroProduto extends javax.swing.JFrame {
             });
         }
     }
-    
-    public void fecharTela(){
+
+    public void selecaoLinha() {
+        if (jTProdutos.getSelectedRow() != -1) {
+            txtNome.setText(jTProdutos.getValueAt(jTProdutos.getSelectedRow(), 1).toString());
+            txtPreco.setText(jTProdutos.getValueAt(jTProdutos.getSelectedRow(), 2).toString());
+
+            oldNome = txtNome.getText();
+            oldPreco = txtPreco.getText();
+
+            btnExcluir.setEnabled(true);
+            btnAtualizar.setEnabled(true);
+            btnCadastrar.setEnabled(false);
+        }
+    }
+
+    public static boolean validaCadastro(String nome, String preco) {
+
+        if ((nome.length() > 1) && (preco.length() > 1)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void fecharTela() {
         InterfacePrincipal interfacePrincipal = new InterfacePrincipal();
         interfacePrincipal.setLocationRelativeTo(null);
         interfacePrincipal.setVisible(true);
         this.dispose();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -240,73 +273,84 @@ public class CadastroProduto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        
 
-        Produto p = new Produto();
-        ProdutoDAO dao = new ProdutoDAO();
-        
-        p.setNome(txtNome.getText());
-        p.setPreco(Double.parseDouble(txtPreco.getText()));
-        
-        dao.create(p);
-        
-        txtNome.setText("");
-        txtPreco.setText("");
-        
-        readJTable();
+        if (validaCadastro(txtNome.getText(), txtPreco.getText())) {
+
+            if (JOptionPane.showConfirmDialog(null, "Deseja cadastrar") == JOptionPane.OK_OPTION) {
+                Produto p = new Produto();
+                ProdutoDAO dao = new ProdutoDAO();
+
+                p.setNome(txtNome.getText());
+                p.setPreco(Double.parseDouble(txtPreco.getText()));
+
+                dao.create(p);
+
+                txtNome.setText("");
+                txtPreco.setText("");
+
+                inicio();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor preencha todos os campos");
+        }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        
-        if (jTProdutos.getSelectedRow() != -1){                   
-            
-            Produto p = new Produto();
-            ProdutoDAO dao = new ProdutoDAO();
-                    
-            p.setId((int)jTProdutos.getValueAt(jTProdutos.getSelectedRow(), 0));
-        
-            dao.delete(p);
-        
-            txtNome.setText("");
-            txtPreco.setText("");
-        
-            readJTable();        
-            
-        }else {
+
+        if (jTProdutos.getSelectedRow() != -1) {
+
+            if (JOptionPane.showConfirmDialog(null, "Deseja realmente excluir") == JOptionPane.OK_OPTION) {
+                Produto p = new Produto();
+                ProdutoDAO dao = new ProdutoDAO();
+
+                p.setId((int) jTProdutos.getValueAt(jTProdutos.getSelectedRow(), 0));
+
+                dao.delete(p);
+
+                txtNome.setText("");
+                txtPreco.setText("");
+
+                inicio();
+            }
+
+        } else {
             JOptionPane.showMessageDialog(null, "Selecione um produto para excluir");
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void jTProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTProdutosMouseClicked
-        if (jTProdutos.getSelectedRow() != -1){           
-            txtNome.setText(jTProdutos.getValueAt(jTProdutos.getSelectedRow(), 1).toString());
-            txtPreco.setText(jTProdutos.getValueAt(jTProdutos.getSelectedRow(), 2).toString());
-        }
+        selecaoLinha();
     }//GEN-LAST:event_jTProdutosMouseClicked
 
     private void jTProdutosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTProdutosKeyReleased
-        if (jTProdutos.getSelectedRow() != -1){           
-            txtNome.setText(jTProdutos.getValueAt(jTProdutos.getSelectedRow(), 1).toString());
-            txtPreco.setText(jTProdutos.getValueAt(jTProdutos.getSelectedRow(), 2).toString());
-        }
+        selecaoLinha();
     }//GEN-LAST:event_jTProdutosKeyReleased
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-        if (jTProdutos.getSelectedRow() != -1){           
-            
-            Produto p = new Produto();
-            ProdutoDAO dao = new ProdutoDAO();
-        
-            p.setNome(txtNome.getText());
-            p.setPreco(Double.parseDouble(txtPreco.getText()));
-            p.setId((int)jTProdutos.getValueAt(jTProdutos.getSelectedRow(), 0));
-        
-            dao.update(p);
-        
-            txtNome.setText("");
-            txtPreco.setText("");
-        
-            readJTable();
+
+        if (!(oldNome.equals(txtNome.getText())) || !(oldPreco.equals(txtPreco.getText()))) {
+
+            if (JOptionPane.showConfirmDialog(null, "Deseja realmente atualizar") == JOptionPane.OK_OPTION) {
+
+                if (jTProdutos.getSelectedRow() != -1) {
+
+                    Produto p = new Produto();
+                    ProdutoDAO dao = new ProdutoDAO();
+
+                    p.setNome(txtNome.getText());
+                    p.setPreco(Double.parseDouble(txtPreco.getText()));
+                    p.setId((int) jTProdutos.getValueAt(jTProdutos.getSelectedRow(), 0));
+
+                    dao.update(p);
+
+                    txtNome.setText("");
+                    txtPreco.setText("");
+
+                    readJTable();
+                }
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "É necessario alterar alguma informação");
         }
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
@@ -315,7 +359,7 @@ public class CadastroProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        
+
     }//GEN-LAST:event_formWindowClosing
 
 

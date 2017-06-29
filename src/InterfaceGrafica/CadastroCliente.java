@@ -5,6 +5,7 @@
  */
 package InterfaceGrafica;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.bean.Cliente;
 import model.dao.ClienteDAO;
@@ -15,28 +16,65 @@ import model.dao.ClienteDAO;
  */
 public class CadastroCliente extends javax.swing.JFrame {
 
+    private String oldNome;
+    private String oldTelefone;
+    private String oldDocumento;
+
     /**
      * Creates new form CadastroCliente
      */
     public CadastroCliente() {
         initComponents();
+        inicio();
     }
-    
-    
-    public void readJTable(){
-        DefaultTableModel modelo = (DefaultTableModel) jTProdutos.getModel();
+
+    public void inicio() {
+        btnExcluir.setEnabled(false);
+        btnAtualizar.setEnabled(false);
+        btnCadastrar.setEnabled(true);
+        readJTable();
+    }
+
+    public void readJTable() {
+        DefaultTableModel modelo = (DefaultTableModel) jTClientes.getModel();
         modelo.setNumRows(0);
         ClienteDAO cdao = new ClienteDAO();
-        
-        for (Cliente p: cdao.read()){
+
+        for (Cliente c : cdao.read()) {
             modelo.addRow(new Object[]{
-                p.getId(),
-                p.getNome(),
-                p.getPreco()
+                c.getId(),
+                c.getNome(),
+                c.getTelefone(),
+                c.getDocumento()
             });
         }
     }
 
+    public static boolean validaCadastro(String nome, String telefone, String documento) {
+
+        if ((nome.length() > 1) && (telefone.length() > 1) && (documento.length() > 1)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void selecaoLinha(){
+        if (jTClientes.getSelectedRow() != -1) {
+            txtNome.setText(jTClientes.getValueAt(jTClientes.getSelectedRow(), 1).toString());
+            txtTelefone.setText(jTClientes.getValueAt(jTClientes.getSelectedRow(), 2).toString());
+            txtDocumento.setText(jTClientes.getValueAt(jTClientes.getSelectedRow(), 3).toString());
+
+            oldNome = txtNome.getText();
+            oldTelefone = txtTelefone.getText();
+            oldDocumento = txtDocumento.getText();
+
+            btnExcluir.setEnabled(true);
+            btnAtualizar.setEnabled(true);
+            btnCadastrar.setEnabled(false);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,12 +97,18 @@ public class CadastroCliente extends javax.swing.JFrame {
         lCadastroProduto = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTClientes = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(674, 588));
 
         jLabel1.setText("Nome");
+
+        txtNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomeActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Telefone");
 
@@ -78,8 +122,18 @@ public class CadastroCliente extends javax.swing.JFrame {
         });
 
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnAtualizar.setText("Atualizar");
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -136,7 +190,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         lCadastroProduto.setFont(new java.awt.Font("Tahoma", 0, 40)); // NOI18N
         lCadastroProduto.setText("Cadastro Cliente");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -155,7 +209,17 @@ public class CadastroCliente extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jTClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTClientesMouseClicked(evt);
+            }
+        });
+        jTClientes.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTClientesKeyReleased(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTClientes);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -206,21 +270,97 @@ public class CadastroCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        Cliente c = new Cliente();
-        ClienteDAO dao = new ClienteDAO();
-        
-        c.setNome(txtNome.getText());
-        c.setTelefone(txtTelefone.getText());
-        c.setDocumento(txtDocumento.getText());
-        
-        dao.create(c);
-        
-        txtNome.setText("");
-        txtTelefone.setText("");
-        txtDocumento.setText("");
-        
-        readJTable();
+
+        if (validaCadastro(txtNome.getText(), txtTelefone.getText(), txtDocumento.getText())) {
+
+            if (JOptionPane.showConfirmDialog(null, "Deseja cadastrar") == JOptionPane.OK_OPTION) {
+
+                Cliente c = new Cliente();
+                ClienteDAO dao = new ClienteDAO();
+
+                c.setNome(txtNome.getText());
+                c.setTelefone(txtTelefone.getText());
+                c.setDocumento(txtDocumento.getText());
+
+                dao.create(c);
+
+                txtNome.setText("");
+                txtTelefone.setText("");
+                txtDocumento.setText("");
+
+                inicio();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor preencha todos os campos");
+        }
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+
+        if (jTClientes.getSelectedRow() != -1) {
+
+            if (JOptionPane.showConfirmDialog(null, "Deseja realmente excluir") == JOptionPane.OK_OPTION) {
+
+                Cliente c = new Cliente();
+                ClienteDAO dao = new ClienteDAO();
+
+                c.setId((int) jTClientes.getValueAt(jTClientes.getSelectedRow(), 0));
+
+                dao.delete(c);
+
+                txtNome.setText("");
+                txtTelefone.setText("");
+                txtDocumento.setText("");
+
+                inicio();
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um produto para excluir");
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+
+        if (!(oldNome.equals(txtNome.getText())) || !(oldTelefone.equals(txtTelefone.getText())) || !(oldDocumento.equals(txtDocumento.getText()))) {
+            
+            if (JOptionPane.showConfirmDialog(null, "Deseja realmente atualizar") == JOptionPane.OK_OPTION) {
+
+                if (jTClientes.getSelectedRow() != -1) {
+
+                    Cliente c = new Cliente();
+                    ClienteDAO dao = new ClienteDAO();
+
+                    c.setNome(txtNome.getText());
+                    c.setTelefone(txtTelefone.getText());
+                    c.setDocumento(txtDocumento.getText());
+                    c.setId((int) jTClientes.getValueAt(jTClientes.getSelectedRow(), 0));
+
+                    dao.update(c);
+
+                    txtNome.setText("");
+                    txtTelefone.setText("");
+                    txtDocumento.setText("");
+
+                    inicio();
+                }
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "É necessario alterar alguma informação");
+        }
+    }//GEN-LAST:event_btnAtualizarActionPerformed
+
+    private void jTClientesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTClientesKeyReleased
+        selecaoLinha();
+    }//GEN-LAST:event_jTClientesKeyReleased
+
+    private void jTClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTClientesMouseClicked
+        selecaoLinha();
+    }//GEN-LAST:event_jTClientesMouseClicked
+
+    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,7 +407,7 @@ public class CadastroCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTClientes;
     private javax.swing.JLabel lCadastroProduto;
     private javax.swing.JTextField txtDocumento;
     private javax.swing.JTextField txtNome;

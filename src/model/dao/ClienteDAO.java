@@ -62,7 +62,7 @@ public class ClienteDAO {
                 
                 Cliente cliente = new Cliente();
                 
-                cliente.setId(rs.getInt("IDProduto"));
+                cliente.setId(rs.getInt("IDCliente"));
                 cliente.setNome(rs.getString("Nome"));
                 cliente.setTelefone(rs.getString("Telefone"));
                 cliente.setDocumento(rs.getString("Documento"));                                
@@ -72,7 +72,7 @@ public class ClienteDAO {
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
         }finally {
             ConnectionFactory.closeConnection(con, stnt, rs);
         }
