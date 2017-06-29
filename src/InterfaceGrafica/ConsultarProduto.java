@@ -14,7 +14,7 @@ import model.dao.ProdutoDAO;
  *
  * @author Douglas
  */
-public class ConsultarProduto extends FormTemplate {
+public class ConsultarProduto extends javax.swing.JFrame{
 
     /**
      * Creates new form ConsultarProduto
@@ -103,21 +103,6 @@ public class ConsultarProduto extends FormTemplate {
     private javax.swing.JLabel lProdutos;
     private javax.swing.JTable tabelaProdutos;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void bApagarActionPerformed(ActionEvent fonte) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void bsalvarActionPerformed(ActionEvent fonte) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void bSairActionPerformed(ActionEvent fonte) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
  
 }

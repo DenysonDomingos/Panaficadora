@@ -7,7 +7,6 @@ package InterfaceGrafica;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
 
 /**
  *
@@ -20,15 +19,10 @@ public abstract class FormTemplate extends javax.swing.JFrame implements ActionL
      */
     public FormTemplate() {
         initComponents();
-        bApagar.addActionListener(this);
-        bSalvar.addActionListener(this);
-        bSair.addActionListener(this);
-    }
-    
-    public abstract void bApagarActionPerformed(ActionEvent fonte);
-    public abstract void bsalvarActionPerformed(ActionEvent fonte);
-    public abstract void bSairActionPerformed(ActionEvent fonte);
 
+        bSobre.addActionListener(this);
+    }
+    public abstract void bSobreActionPerformed(ActionEvent fonte);
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,41 +33,25 @@ public abstract class FormTemplate extends javax.swing.JFrame implements ActionL
     private void initComponents() {
 
         jpSul = new javax.swing.JPanel();
-        bApagar = new javax.swing.JButton();
-        bSalvar = new javax.swing.JButton();
-        bSair = new javax.swing.JButton();
+        bSobre = new javax.swing.JButton();
 
-        bApagar.setText("Apagar");
-
-        bSalvar.setText("Salvar");
-
-        bSair.setText("Sair");
+        bSobre.setText("Sobre");
 
         javax.swing.GroupLayout jpSulLayout = new javax.swing.GroupLayout(jpSul);
         jpSul.setLayout(jpSulLayout);
         jpSulLayout.setHorizontalGroup(
             jpSulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpSulLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(bApagar)
-                .addGap(47, 47, 47)
-                .addComponent(bSalvar)
-                .addGap(41, 41, 41)
-                .addComponent(bSair)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addGap(21, 21, 21)
+                .addComponent(bSobre)
+                .addContainerGap(269, Short.MAX_VALUE))
         );
-
-        jpSulLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {bApagar, bSair, bSalvar});
-
         jpSulLayout.setVerticalGroup(
             jpSulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpSulLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jpSulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bApagar)
-                    .addComponent(bSalvar)
-                    .addComponent(bSair))
-                .addContainerGap(28, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpSulLayout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addComponent(bSobre)
+                .addGap(23, 23, 23))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -85,21 +63,22 @@ public abstract class FormTemplate extends javax.swing.JFrame implements ActionL
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 305, Short.MAX_VALUE)
+                .addGap(0, 242, Short.MAX_VALUE)
                 .addComponent(jpSul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bApagar;
-    private javax.swing.JButton bSair;
-    private javax.swing.JButton bSalvar;
+    private javax.swing.JButton bSobre;
     private javax.swing.JPanel jpSul;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(ae.getActionCommand().equals("Sobre"))
+        {
+            System.out.println("Sobre");
+        }
     }
 }

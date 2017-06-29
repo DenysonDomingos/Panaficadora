@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  *
  * @author Douglas
  */
-public class InterfacePrincipal extends javax.swing.JFrame {
+public class InterfacePrincipal extends FormTemplate {
 
     /**
      * Creates new form InterfacePrincipal
@@ -31,7 +31,6 @@ public class InterfacePrincipal extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         bRealizarVenda = new javax.swing.JButton();
-        bRelatorios = new javax.swing.JButton();
         lPanificadora = new javax.swing.JLabel();
         jMenu = new javax.swing.JMenuBar();
         jMenuCadastrar = new javax.swing.JMenu();
@@ -39,6 +38,10 @@ public class InterfacePrincipal extends javax.swing.JFrame {
         jMenuCadastroCliente = new javax.swing.JMenuItem();
         jMenuConsultar = new javax.swing.JMenu();
         jMenuConsultarPaes = new javax.swing.JMenuItem();
+        jMenuGerarRelatorio = new javax.swing.JMenu();
+        jMenuGerarRelatorioCompraCliente = new javax.swing.JMenuItem();
+        jMenuRelatorioVendaProduto = new javax.swing.JMenuItem();
+        jMenuGerarRelatorioTotalRecebido = new javax.swing.JMenuItem();
         jMenuOpcao = new javax.swing.JMenu();
         jMenuOpcoesSair = new javax.swing.JMenuItem();
 
@@ -55,19 +58,16 @@ public class InterfacePrincipal extends javax.swing.JFrame {
             }
         });
 
-        bRelatorios.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        bRelatorios.setText("Gerar Relatório");
-        bRelatorios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bRelatoriosActionPerformed(evt);
-            }
-        });
-
         lPanificadora.setFont(new java.awt.Font("Tahoma", 0, 40)); // NOI18N
         lPanificadora.setText("Panificadora");
 
         jMenuCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/add.png"))); // NOI18N
         jMenuCadastrar.setText("Cadastrar");
+        jMenuCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuCadastrarActionPerformed(evt);
+            }
+        });
 
         jMenuCadastrarPao.setText("Pão");
         jMenuCadastrarPao.addActionListener(new java.awt.event.ActionListener() {
@@ -100,6 +100,35 @@ public class InterfacePrincipal extends javax.swing.JFrame {
 
         jMenu.add(jMenuConsultar);
 
+        jMenuGerarRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/door_out.png"))); // NOI18N
+        jMenuGerarRelatorio.setText("Gerar Relatório");
+
+        jMenuGerarRelatorioCompraCliente.setText("Compra Cliente");
+        jMenuGerarRelatorioCompraCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuGerarRelatorioCompraClienteActionPerformed(evt);
+            }
+        });
+        jMenuGerarRelatorio.add(jMenuGerarRelatorioCompraCliente);
+
+        jMenuRelatorioVendaProduto.setText("Venda Produto");
+        jMenuRelatorioVendaProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuRelatorioVendaProdutoActionPerformed(evt);
+            }
+        });
+        jMenuGerarRelatorio.add(jMenuRelatorioVendaProduto);
+
+        jMenuGerarRelatorioTotalRecebido.setText("Total Recebido");
+        jMenuGerarRelatorioTotalRecebido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuGerarRelatorioTotalRecebidoActionPerformed(evt);
+            }
+        });
+        jMenuGerarRelatorio.add(jMenuGerarRelatorioTotalRecebido);
+
+        jMenu.add(jMenuGerarRelatorio);
+
         jMenuOpcao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/config.png"))); // NOI18N
         jMenuOpcao.setText("Opções");
 
@@ -119,33 +148,25 @@ public class InterfacePrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lPanificadora)
-                .addGap(87, 87, 87))
             .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(bRealizarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bRelatorios))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(77, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lPanificadora)
+                        .addGap(87, 87, 87))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(bRealizarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66))))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {bRealizarVenda, bRelatorios});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(lPanificadora)
-                .addGap(58, 58, 58)
-                .addComponent(bRealizarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(bRelatorios)
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addGap(44, 44, 44)
+                .addComponent(bRealizarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(192, Short.MAX_VALUE))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {bRealizarVenda, bRelatorios});
 
         pack();
         setLocationRelativeTo(null);
@@ -157,13 +178,6 @@ public class InterfacePrincipal extends javax.swing.JFrame {
         venda.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_bRealizarVendaActionPerformed
-
-    private void bRelatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRelatoriosActionPerformed
-        Relatorio relatorio = new Relatorio();
-        relatorio.setLocationRelativeTo(null);
-        relatorio.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_bRelatoriosActionPerformed
 
     private void jMenuCadastrarPaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCadastrarPaoActionPerformed
         
@@ -192,10 +206,33 @@ public class InterfacePrincipal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jMenuCadastroClienteActionPerformed
 
+    private void jMenuRelatorioVendaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuRelatorioVendaProdutoActionPerformed
+        RelatorioVendaProduto relatorioVendaProduto = new RelatorioVendaProduto();
+        relatorioVendaProduto.setLocationRelativeTo(null);
+        relatorioVendaProduto.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuRelatorioVendaProdutoActionPerformed
 
+    private void jMenuGerarRelatorioCompraClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuGerarRelatorioCompraClienteActionPerformed
+        RelatorioCompraCliente relatorioCompraCliente = new RelatorioCompraCliente();
+        relatorioCompraCliente.setLocationRelativeTo(null);
+        relatorioCompraCliente.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuGerarRelatorioCompraClienteActionPerformed
+
+    private void jMenuCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCadastrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuCadastrarActionPerformed
+
+    private void jMenuGerarRelatorioTotalRecebidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuGerarRelatorioTotalRecebidoActionPerformed
+        RelatorioTotalRecebido relatorioTotalRecebido = new RelatorioTotalRecebido();
+        relatorioTotalRecebido.setLocationRelativeTo(null);
+        relatorioTotalRecebido.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuGerarRelatorioTotalRecebidoActionPerformed
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bRealizarVenda;
-    private javax.swing.JButton bRelatorios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenu;
     private javax.swing.JMenu jMenuCadastrar;
@@ -203,8 +240,20 @@ public class InterfacePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuCadastroCliente;
     private javax.swing.JMenu jMenuConsultar;
     private javax.swing.JMenuItem jMenuConsultarPaes;
+    private javax.swing.JMenu jMenuGerarRelatorio;
+    private javax.swing.JMenuItem jMenuGerarRelatorioCompraCliente;
+    private javax.swing.JMenuItem jMenuGerarRelatorioTotalRecebido;
     private javax.swing.JMenu jMenuOpcao;
     private javax.swing.JMenuItem jMenuOpcoesSair;
+    private javax.swing.JMenuItem jMenuRelatorioVendaProduto;
     private javax.swing.JLabel lPanificadora;
     // End of variables declaration//GEN-END:variables
+    @Override
+    public void bSobreActionPerformed(java.awt.event.ActionEvent evt) {                                       
+
+        InterfacePrincipal interfacePrincipal = new InterfacePrincipal();
+        interfacePrincipal.setLocationRelativeTo(null);
+        interfacePrincipal.setVisible(true);
+        this.dispose();
+    }
 }

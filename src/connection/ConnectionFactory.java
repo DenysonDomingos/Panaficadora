@@ -11,9 +11,9 @@ import java.util.logging.Logger;
 public class ConnectionFactory {
     
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/Panificadora";
+    private static final String URL = "jdbc:mysql://localhost:3306/panificadora?zeroDateTimeBehavior=convertToNull";
     private static final String USER = "root";
-    private static final String PASS = "root";
+    private static final String PASS = "";
     
     public static Connection getConnection(){
         try {
